@@ -2,6 +2,7 @@ package com.wangcg.controller;
 
 import com.wangcg.dto.InfoUser.InfoUserLogin;
 import com.wangcg.dto.InfoUser.InfoUserUpdate;
+import com.wangcg.minterface.Authorization;
 import com.wangcg.model.InfoUser;
 import com.wangcg.service.InfoUserService;
 import com.wangcg.util.RequestHelper;
@@ -45,5 +46,12 @@ public class InfoUserController {
         }
 
         return result;
+    }
+
+    @Authorization
+    @RequestMapping(value={"/logout"},method= RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public Long logOut(){
+        Long userId = RequestHelper.GetCurrentUserId();
+        return userId;
     }
 }

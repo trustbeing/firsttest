@@ -13,4 +13,9 @@ public class RequestHelper {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		return request.getRemoteAddr();
 	}
+
+	public static Long GetCurrentUserId() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		return (Long)request.getAttribute(Constants.CURRENT_USER_ID);
+	}
 }
