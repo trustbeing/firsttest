@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangcg.dao.UserDailyMapper" >
+  <resultMap id="BaseResultMap" type="com.wangcg.model.UserDaily" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="date_time" property="dateTime" jdbcType="TIMESTAMP" />
+    <result column="account_money" property="accountMoney" jdbcType="DECIMAL" />
+    <result column="hold_money" property="holdMoney" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, date_time, account_money, hold_money
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_daily
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_daily
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wangcg.model.UserDaily" >
+    insert into user_daily (id, user_id, date_time, 
+      account_money, hold_money)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{dateTime,jdbcType=TIMESTAMP}, 
+      #{accountMoney,jdbcType=DECIMAL}, #{holdMoney,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangcg.model.UserDaily" >
+    insert into user_daily
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="dateTime != null" >
+        date_time,
+      </if>
+      <if test="accountMoney != null" >
+        account_money,
+      </if>
+      <if test="holdMoney != null" >
+        hold_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="dateTime != null" >
+        #{dateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountMoney != null" >
+        #{accountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="holdMoney != null" >
+        #{holdMoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangcg.model.UserDaily" >
+    update user_daily
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="dateTime != null" >
+        date_time = #{dateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountMoney != null" >
+        account_money = #{accountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="holdMoney != null" >
+        hold_money = #{holdMoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangcg.model.UserDaily" >
+    update user_daily
+    set user_id = #{userId,jdbcType=BIGINT},
+      date_time = #{dateTime,jdbcType=TIMESTAMP},
+      account_money = #{accountMoney,jdbcType=DECIMAL},
+      hold_money = #{holdMoney,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

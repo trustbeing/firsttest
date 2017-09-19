@@ -10,3 +10,6 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+/src/main/resources/properties/redis.properties
+/src/main/resources/properties/jdbc.properties
+/.idea
