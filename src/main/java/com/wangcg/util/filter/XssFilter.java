@@ -1,7 +1,5 @@
 package com.wangcg.util.filter;
 
-import com.wangcg.util.xss.XssHttpServletRequestWrapper;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;

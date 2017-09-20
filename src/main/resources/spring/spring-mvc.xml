@@ -26,6 +26,13 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <mvc:interceptors>
+        <bean class="com.wangcg.util.filter.SmoothBurstyInterceptor">
+            <constructor-arg index="0" value="100"/>
+        </bean>
+        <bean class="com.wangcg.util.filter.AuthorizationInterceptor"/>
+    </mvc:interceptors>
+
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />

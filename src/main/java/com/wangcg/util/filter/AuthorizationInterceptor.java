@@ -1,9 +1,10 @@
-package com.wangcg.util.Auth;
+package com.wangcg.util.filter;
 
-import com.wangcg.util.annotation.Authorization;
+import com.wangcg.util.Auth.TokenManager;
+import com.wangcg.util.Auth.TokenModel;
 import com.wangcg.util.Constants;
+import com.wangcg.util.annotation.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -11,9 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
-@Component
-public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
+public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	private TokenManager manager;

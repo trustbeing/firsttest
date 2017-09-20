@@ -1,4 +1,4 @@
-package com.wangcg.util.xss;
+package com.wangcg.util.filter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
