@@ -1,4 +1,4 @@
-package com.wangcg.minterface;
+package com.wangcg.util.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

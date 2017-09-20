@@ -2,7 +2,7 @@ package com.wangcg.controller;
 
 import com.wangcg.dto.InfoUser.InfoUserLogin;
 import com.wangcg.dto.InfoUser.InfoUserUpdate;
-import com.wangcg.minterface.Authorization;
+import com.wangcg.util.annotation.Authorization;
 import com.wangcg.model.InfoUser;
 import com.wangcg.service.InfoUserService;
 import com.wangcg.util.RequestHelper;

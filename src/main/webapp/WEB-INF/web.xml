@@ -20,7 +20,6 @@
   </context-param>
 
 
-
   <!--配置springmvc DispatcherServlet-->
   <servlet>
     <servlet-name>springMVC</servlet-name>
@@ -38,6 +37,7 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -50,11 +50,21 @@
       <param-value>true</param-value>
     </init-param>
   </filter>
-
   <filter-mapping>
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <filter>
+    <filter-name>xssFilter</filter-name>
+    <filter-class>com.wangcg.util.filter.XssFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>xssFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
 
   <!-- 配置session存在时间 -->
   <session-config>

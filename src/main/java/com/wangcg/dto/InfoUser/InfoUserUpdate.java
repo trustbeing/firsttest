@@ -5,6 +5,9 @@ public class InfoUserUpdate {
 
 	private String nickName;
 
+	public InfoUserUpdate(){
+
+	}
 
 	public InfoUserUpdate(Long id, String nickName) {
 		this.id = id;
