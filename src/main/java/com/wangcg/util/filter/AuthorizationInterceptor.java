@@ -30,6 +30,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
 			//从header中得到token
 			String authorization = request.getHeader(Constants.AUTHORIZATION);
+			authorization = authorization.substring(7);
 			//验证token
 			TokenModel model = manager.getToken(authorization);
 			if (manager.checkToken(model)) {
@@ -47,4 +48,5 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
 		return true;
 	}
+
 }

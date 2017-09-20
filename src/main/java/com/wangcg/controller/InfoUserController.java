@@ -1,7 +1,9 @@
 package com.wangcg.controller;
 
-import com.wangcg.dto.InfoUser.InfoUserLogin;
-import com.wangcg.dto.InfoUser.InfoUserUpdate;
+import com.wangcg.dto.InfoUserLogin;
+import com.wangcg.dto.InfoUserUpdate;
+import com.wangcg.util.Convert.ObjectConvert;
+import com.wangcg.util.JsonResultModel;
 import com.wangcg.util.annotation.Authorization;
 import com.wangcg.model.InfoUser;
 import com.wangcg.service.InfoUserService;
@@ -11,6 +13,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/infouser")
@@ -30,13 +36,13 @@ public class InfoUserController {
 
     @RequestMapping(value={"/update"},method= RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public int saveHander(InfoUserUpdate user){
-        int result=infoUserService.updateNickNameByPrimaryKey(user);
+        int result=infoUserService.updateNickNameByPrimaryKey(user.getId(),user.getNickName());
         return result;
     }
 
     @RequestMapping(value={"/login"},method= RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public InfoUser UserLogin(InfoUserLogin user){
-        InfoUser result=infoUserService.userLogin(user);
+        InfoUser result=infoUserService.userLogin(user.getId());
         if(result!=null) {
             try {
                 infoUserService.updateUserLogin(user.getId(), RequestHelper.getRemoteAddr());
@@ -49,9 +55,22 @@ public class InfoUserController {
     }
 
     @Authorization
-    @RequestMapping(value={"/logout"},method= RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public Long logOut(){
+    @RequestMapping(value={"/getself"},method= RequestMethod.GET)
+    public JsonResultModel<HashMap<String,Object>> getSelf(){
         Long userId = RequestHelper.GetCurrentUserId();
-        return userId;
+        InfoUser user = infoUserService.selectByPrimaryKey(userId);
+        HashMap<String,Object> map = new HashMap<String, Object>();
+        if(user!=null){
+            try {
+                map = ObjectConvert.beanToHashMap(user);
+            } catch (IntrospectionException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+        return JsonResultModel.returnSuccess(map);
     }
 }

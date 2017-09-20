@@ -23,7 +23,7 @@
     delete from user_login_his
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.wangcg.model.UserLoginHis" >
+  <insert id="insert" parameterType="com.wangcg.model.UserLoginHis" useGeneratedKeys="true" keyProperty="id">
     insert into user_login_his (id, user_id, login_ip, 
       login_type, remark, create_time
       )
@@ -31,7 +31,7 @@
       #{loginType,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.wangcg.model.UserLoginHis" >
+  <insert id="insertSelective" parameterType="com.wangcg.model.UserLoginHis" useGeneratedKeys="true" keyProperty="id">
     insert into user_login_his
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

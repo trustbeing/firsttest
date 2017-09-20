@@ -1,8 +1,6 @@
 package com.wangcg.service.impl;
 
 import com.wangcg.dao.InfoUserMapper;
-import com.wangcg.dto.InfoUser.InfoUserLogin;
-import com.wangcg.dto.InfoUser.InfoUserUpdate;
 import com.wangcg.model.InfoUser;
 import com.wangcg.service.InfoUserService;
 import com.wangcg.service.UserLogService;
@@ -29,15 +27,15 @@ public class InfoUserServiceImpl implements InfoUserService{
         return infoUserMapper.selectByPrimaryKey(id);
     }
 
-    public int updateNickNameByPrimaryKey(InfoUserUpdate userUpdate) {
+    public int updateNickNameByPrimaryKey(Long id,String nickName) {
         InfoUser user = new InfoUser();
-        user.setId(userUpdate.getId());
-        user.setNickName(userUpdate.getNickName());
+        user.setId(id);
+        user.setNickName(nickName);
         return infoUserMapper.updateNickNameByPrimaryKey(user);
     }
 
-    public InfoUser userLogin(InfoUserLogin user) {
-        InfoUser model = infoUserMapper.selectByPrimaryKey(user.getId());
+    public InfoUser userLogin(Long id) {
+        InfoUser model = infoUserMapper.selectByPrimaryKey(id);
 
         return model;
     }
@@ -58,5 +56,22 @@ public class InfoUserServiceImpl implements InfoUserService{
         }
 
         return "";
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_COMMITTED,rollbackFor = Exception.class)
+    public InfoUser queryOrCreateByOpenid(String openid) throws Exception {
+        if (openid == null || openid == "")
+            return null;
+        InfoUser model = infoUserMapper.selectByOpenid(openid);
+        if(model==null){
+            model = new InfoUser();
+            model.setWxOpenId(openid);
+            int count = infoUserMapper.insertSelective(model);
+            if(count<=0){
+                throw new Exception("插入失败");
+            }
+        }
+
+        return model;
     }
 }

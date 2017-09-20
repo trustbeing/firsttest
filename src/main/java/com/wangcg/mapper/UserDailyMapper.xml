@@ -22,13 +22,13 @@
     delete from user_daily
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.wangcg.model.UserDaily" >
+  <insert id="insert" parameterType="com.wangcg.model.UserDaily" useGeneratedKeys="true" keyProperty="id">
     insert into user_daily (id, user_id, date_time, 
       account_money, hold_money)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{dateTime,jdbcType=TIMESTAMP}, 
       #{accountMoney,jdbcType=DECIMAL}, #{holdMoney,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.wangcg.model.UserDaily" >
+  <insert id="insertSelective" parameterType="com.wangcg.model.UserDaily" useGeneratedKeys="true" keyProperty="id">
     insert into user_daily
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

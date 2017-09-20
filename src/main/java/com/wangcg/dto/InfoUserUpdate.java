@@ -1,13 +1,9 @@
-package com.wangcg.dto.InfoUser;
+package com.wangcg.dto;
 
 public class InfoUserUpdate {
 	private Long id;
 
 	private String nickName;
-
-	public InfoUserUpdate(){
-
-	}
 
 	public InfoUserUpdate(Long id, String nickName) {
 		this.id = id;

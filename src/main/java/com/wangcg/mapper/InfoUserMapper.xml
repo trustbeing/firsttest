@@ -31,7 +31,7 @@
     delete from info_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.wangcg.model.InfoUser">
+  <insert id="insert" parameterType="com.wangcg.model.InfoUser" useGeneratedKeys="true" keyProperty="id">
     insert into info_user (id, head_url, wx_union_id, 
       wx_open_id, nick_name, gender, 
       province, city, bind_mobile, 
@@ -43,7 +43,7 @@
       #{accountMoney,jdbcType=DECIMAL}, #{recentVisit,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.wangcg.model.InfoUser">
+  <insert id="insertSelective" parameterType="com.wangcg.model.InfoUser" useGeneratedKeys="true" keyProperty="id">
     insert into info_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -196,4 +196,11 @@
     set recent_visit = #{recentVisit,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectByOpenid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from info_user
+    where wx_open_id = #{wx_open_id,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

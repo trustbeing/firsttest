@@ -27,4 +27,8 @@ public class TokenModel {
 	public void setToken(String token) {
 		this.token = token;
 	}
+
+	public String getAuthToken(){
+		return userId+"_"+token;
+	}
 }

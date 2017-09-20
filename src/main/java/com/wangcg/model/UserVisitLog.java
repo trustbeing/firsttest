@@ -1,8 +1,9 @@
 package com.wangcg.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserVisitLog {
+public class UserVisitLog implements Serializable {
     private Long id;
 
     private Long userId;

@@ -18,4 +18,6 @@ public interface InfoUserMapper {
     int updateNickNameByPrimaryKey(InfoUser record);
 
     int updateRecentVisitByPrimaryKey(InfoUser record);
+
+    InfoUser selectByOpenid(String wx_open_id);
 }

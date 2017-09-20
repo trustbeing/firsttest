@@ -1,9 +1,10 @@
 package com.wangcg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class InfoOrderSim {
+public class InfoOrderSim  implements Serializable {
     private Long id;
 
     private Long userId;

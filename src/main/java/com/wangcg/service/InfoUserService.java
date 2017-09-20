@@ -1,16 +1,16 @@
 package com.wangcg.service;
 
-import com.wangcg.dto.InfoUser.InfoUserLogin;
-import com.wangcg.dto.InfoUser.InfoUserUpdate;
 import com.wangcg.model.InfoUser;
 
 
 public interface InfoUserService {
     InfoUser selectByPrimaryKey(Long id);
 
-    int updateNickNameByPrimaryKey(InfoUserUpdate model);
+    int updateNickNameByPrimaryKey(Long id,String nickName);
 
-	InfoUser userLogin(InfoUserLogin user);
+	InfoUser userLogin(Long id);
 
 	String updateUserLogin(Long id,String loginIp) throws Exception;
+
+	InfoUser queryOrCreateByOpenid(String openid) throws Exception;
 }

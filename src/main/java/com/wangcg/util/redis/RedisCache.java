@@ -26,6 +26,7 @@ public class RedisCache{
         {
             connection = jedisConnectionFactory.getConnection();
             connection.set(SerializableUtil.serialize(key), SerializableUtil.serialize(value));
+
         }
         finally
         {

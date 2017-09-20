@@ -24,7 +24,7 @@
     delete from user_visit_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.wangcg.model.UserVisitLog">
+  <insert id="insert" parameterType="com.wangcg.model.UserVisitLog" useGeneratedKeys="true" keyProperty="id">
     insert into user_visit_log (id, user_id, client_user_agent, 
       client_refer, api_url, client_ip, 
       create_time)
@@ -32,7 +32,7 @@
       #{clientRefer,jdbcType=VARCHAR}, #{apiUrl,jdbcType=VARCHAR}, #{clientIp,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.wangcg.model.UserVisitLog">
+  <insert id="insertSelective" parameterType="com.wangcg.model.UserVisitLog" useGeneratedKeys="true" keyProperty="id">
     insert into user_visit_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

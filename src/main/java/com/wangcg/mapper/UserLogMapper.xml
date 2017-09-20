@@ -24,7 +24,7 @@
     delete from user_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.wangcg.model.UserLog">
+  <insert id="insert" parameterType="com.wangcg.model.UserLog" useGeneratedKeys="true" keyProperty="id">
     insert into user_log (id, user_id, type, 
       content, ref_table, ref_id, 
       create_time)
@@ -32,7 +32,7 @@
       #{content,jdbcType=VARCHAR}, #{refTable,jdbcType=VARCHAR}, #{refId,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.wangcg.model.UserLog">
+  <insert id="insertSelective" parameterType="com.wangcg.model.UserLog" useGeneratedKeys="true" keyProperty="id">
     insert into user_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

@@ -1,9 +1,13 @@
-package com.wangcg.dto.InfoUser;
+package com.wangcg.dto;
 
 public class InfoUserLogin {
 	private Long id;
 
 	private String loginIp;
+
+	public InfoUserLogin(){
+
+	}
 
 	public Long getId() {
 		return id;
